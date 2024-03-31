@@ -34,5 +34,5 @@ async fn main() {
 }
 
 async fn root_handler() -> impl IntoResponse {
-    (StatusCode::OK, "Hello World Khoa!")
+    (StatusCode::OK, "Hello World Khoa - Awesome!")
 }
