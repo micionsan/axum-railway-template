@@ -39,7 +39,7 @@ ENV TZ=Etc/UTC \
 #    && mkdir -p ${APP}
 
 
-mkdir -p ${APP}
+RUN mkdir -p ${APP}
 COPY --from=builder /axum-railway-template/target/release/axum-railway-template ${APP}/axum-railway-template
 
 #RUN chown -R $APP_USER:$APP_USER ${APP}
