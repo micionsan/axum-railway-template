@@ -1,6 +1,6 @@
 # Build Stage
 #FROM rust:1.68.0 as builder
-FROM rust:1.75.0 as builder
+FROM rust:1.75.0--alpine as builder
 
 
 RUN USER=root cargo new --bin axum-railway-template
@@ -17,12 +17,19 @@ RUN rm ./target/release/deps/axum_railway_template*
 RUN cargo build --release
 
 
-FROM debian:buster-slim
+#FROM debian:buster-slim
+FROM alpine:3.19
+FROM alpine:3.19
+
+RUN apk add --no-cache \
+        ca-certificates \
+        gcc
+        
 ARG APP=/usr/src/app
 
-RUN apt-get update \
-    && apt-get install -y ca-certificates tzdata \
-    && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update \
+ #   && apt-get install -y ca-certificates tzdata \
+    #&& rm -rf /var/lib/apt/lists/*
 
 ENV TZ=Etc/UTC \
     APP_USER=appuser
