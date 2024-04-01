@@ -1,6 +1,6 @@
 # Build Stage
 #FROM rust:1.68.0 as builder
-FROM rust:1.77-buster-slim as builder
+FROM rust:slim-buster as builder
 
 
 RUN USER=root cargo new --bin axum-railway-template
