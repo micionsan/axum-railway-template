@@ -34,15 +34,17 @@ ARG APP=/usr/src/app
 ENV TZ=Etc/UTC \
     APP_USER=appuser
 
-RUN groupadd $APP_USER \
-    && useradd -g $APP_USER $APP_USER \
-    && mkdir -p ${APP}
+#RUN groupadd $APP_USER \
+ #   && useradd -g $APP_USER $APP_USER \
+#    && mkdir -p ${APP}
 
+
+mkdir -p ${APP}
 COPY --from=builder /axum-railway-template/target/release/axum-railway-template ${APP}/axum-railway-template
 
-RUN chown -R $APP_USER:$APP_USER ${APP}
+#RUN chown -R $APP_USER:$APP_USER ${APP}
 
-USER $APP_USER
+#USER $APP_USER
 WORKDIR ${APP}
 
 EXPOSE 3000
